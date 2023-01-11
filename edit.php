@@ -1,6 +1,29 @@
 <?php 
 
+require 'function.php';
 
+$id = $_GET["id"];
+
+$si = query("SELECT * FROM tb_santri WHERE id = $id")[0];
+
+if(isset($_POST["submit"])) {
+
+    if(edit($_POST) > 0 ) {
+        echo "
+        <script>
+            alert('data berhasil di ubah');
+            document.location.href = 'index.php'
+        </script>
+        ";
+    } else {
+        echo "
+        <script>
+            alert('data gagal di ubah');
+            document.location.href = 'index.php'
+        </script>   
+        ";
+    }
+}
 
 ?>
 
@@ -20,28 +43,31 @@
 
             <h2 class="text-center">Ubah Data Santri</h2>
                 <form action="" method="post" enctype="multipart/form-data">
+
+                <input type="hidden" name="id" value="<?= $si["id"] ?>">
+                
                     <div class="form-grup mb-2">
                         <label for="nama" class="mb-2">Nama</label>
-                        <input type="text" name="nama" id="nama" class="form-control" placeholder="masukan nama">
+                        <input type="text" name="nama" id="nama" class="form-control" require value="<?= $si["nama"]; ?>" placeholder="masukan nama">
                     </div>
                     <div class="form-grup mb-2">
                         <label for="alamat" class="mb-2">Alamat</label>
-                        <input type="text" name="alamat" id="alamat" class="form-control" placeholder="masukan alamat">
+                        <input type="text" name="alamat" id="alamat" class="form-control" require value="<?= $si["alamat"]; ?>" placeholder="masukan alamat">
                     </div>
                     <div class="form-grup mb-2">
                         <label for="telpon" class="mb-2">No.Telpon</label>
-                        <input type="text" name="telpon" id="telpon" class="form-control" placeholder="masukan no telpon">
+                        <input type="text" name="telpon" id="telpon" class="form-control" require value="<?= $si["telpon"]; ?>" placeholder="masukan no telpon">
                     </div>
                     <div class="form-grup mb-2">
                         <label for="ayah" class="mb-2">Nama Ayah</label>
-                        <input type="text" name="ayah" id="ayah" class="form-control" placeholder="masukan nama ayah">
+                        <input type="text" name="ayah" id="ayah" class="form-control" require value="<?= $si["ayah"]; ?>" placeholder="masukan nama ayah">
                     </div>
                     <div class="form-grup mb-2">
                         <label for="ibu" class="mb-2">Nama Ibu</label>
-                        <input type="text" name="ibu" id="id" class="form-control" placeholder="masukan nama ibu">
+                        <input type="text" name="ibu" id="ibu" class="form-control" require value="<?= $si["ibu"]; ?>" placeholder="masukan nama ibu">
                     </div>
                     <div class="form-grup mt-4 d-flex justify-content-end">
-                        <button type="submit" class="btn btn-success">Ubah</button>
+                        <button type="submit" name="submit" class="btn btn-success">Ubah</button>
                     </div>
                     
                     <a href="index.php" class="btn btn-warning">Kembali</a>

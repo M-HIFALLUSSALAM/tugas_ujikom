@@ -4,6 +4,10 @@ require 'function.php';
 
 $santri = query("SELECT * FROM tb_santri");
 
+if(isset($_POST["cari"])) {
+  $santri = cari($_POST["keyword"]);
+}
+
 $n = 1;
 
 ?>
@@ -23,9 +27,9 @@ $n = 1;
 
             <h2 class="text-center mb-5">Data Santi PONPES Pekalongan Tahun 2022-2024</h2>
 
-            <form action="" class="form-grup d-flex">
-              <input type="search" name="" id="" class="form-control me-3" placeholder="search" > 
-              <button class="btn btn-success">search</button>
+            <form action="" method="post" class="form-grup d-flex">
+              <input type="search" name="keyword" class="form-control me-3" placeholder="search" autofocus autocomplete="off"> 
+              <button type="submit" name="cari" class="btn btn-success">search</button>
             </form>
 
             <a href="tambah.php" class="btn btn-warning mt-3 mb-3">Tambah</a>
@@ -51,8 +55,8 @@ $n = 1;
                           <td><?= $row["ayah"]?></td>
                           <td><?= $row["ibu"]?></td>
                           <td class="text-center">
-                            <a href="edit.php" class="text-success"><i class="bi bi-pencil-square"></i></a>
-                            <a href="hapus.php?id=<?= $row["id"] ?>" onclick="return confirm('yakin kau deck!!!');" class="text-danger"><i class="bi bi-trash-fill"></i></a>
+                            <a href="edit.php?id=<?= $row["id"];?>" class="text-success"><i class="bi bi-pencil-square"></i></a>
+                            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin kau deck!!!');" class="text-danger"><i class="bi bi-trash-fill"></i></a>
                           </td>
                         </tr>
                         <?php endforeach; ?>

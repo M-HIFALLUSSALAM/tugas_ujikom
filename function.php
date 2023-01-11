@@ -61,4 +61,16 @@ function edit($data) {
 
 }
 
+function cari($keyword) {
+    $query = "SELECT * FROM tb_santri WHERE
+            nama LIKE '%$keyword%' OR
+            alamat LIKE '%$keyword%' OR
+            telpon LIKE '%$keyword%' OR
+            ayah LIKE '%$keyword%' OR
+            ibu LIKE '%$keyword%'
+    ";
+
+    return query($query);
+}
+
 ?>
