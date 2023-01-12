@@ -36,7 +36,7 @@ $n = 1;
 
                 <form action="">
                     <table class="table table-bordered">
-                        <tr class="text-center">
+                        <tr class="text-center bg-dark text-white">
                           <th>No</th>
                           <th>Nama Santri</th>
                           <th>Alamat</th>
